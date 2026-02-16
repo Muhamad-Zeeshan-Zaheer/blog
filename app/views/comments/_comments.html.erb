@@ -1,24 +1,18 @@
-<div class="card mt-3">
-  <div class="card-body">
-    <h5 class="card-title">Add a Comment</h5>
-    <%= form_with model: [@article, @article.comments.build] do |form| %>
-      <div class="mb-3">
-        <%= form.label :title, class:"form-label" %>
-        <%= form.text_field :title, class:"form-control", placeholder:"Enter comment title" %>
-        <% @article.comments.build.errors.full_messages_for(:title).each do |message| %>
-          <div class="text-danger small"><%= message %></div>
-        <% end %>
-      </div>
-      <div class="mb-3">
-        <%= form.label :body, class:"form-label" %>
-        <%= form.text_area :body, class:"form-control", rows:3, placeholder:"Enter your comment" %>
-        <% @article.comments.build.errors.full_messages_for(:body).each do |message| %>
-          <div class="text-danger small"><%= message %></div>
-        <% end %>
-      </div>
-      <div class="text-end">
-        <%= form.submit  class:"btn btn-success" %>
-      </div>
-    <% end %>
-  </div>
-</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Body</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+    <tbody>
+      <% @article.comments.each do |comment| %>
+        <tr>
+          <td><%= comment.title %></td>
+          <td><%= comment.body %></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
